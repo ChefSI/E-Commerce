@@ -1,0 +1,87 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+	<section class="hero pb-3 bg-cover bg-center d-flex align-items-center img-fluid" style="background: url({{seller.cover_image.url}})">
+	  <div class="container py-5">
+		<div class="row px-4 px-lg-5">
+		  <div class="col-lg-6 bg-transparent p-4 ">
+			<p class="text-muted small text-uppercase mb-2">New Inspiration 2020</p>
+			<h1 class="h2 text-uppercase mb-3">20% off on new season</h1><a class="btn btn-dark" href="shop.html">Browse collections</a>
+            
+            <h5 class="mt-0 font-weight-bold mb-2">{{seller.description}}</h5>
+            <h5 class="mt-0 font-weight-bold mb-2">I 'am {{seller.title}}</h5>
+            <div class="badge text-white bg-primary">{{seller.adress}}</div>
+            <div class="badge text-white bg-secondary">{{seller.contact}}</div>
+            <div class="badge text-white bg-info">since {{seller.date|date:"Y"}}</div>
+		  </div>
+		</div>
+	  </div>
+      <img src="{{seller.image.url}}" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+              
+               
+	</section>
+    
+<div class="container py-5">
+
+    <!-- For demo purpose -->
+    <div class="row text-center text-white mb-5">
+      <div class="col-lg-7 mx-auto">
+        <h1 class="display-4">Bootstrap 4 list</h1>
+        <p class="lead mb-0">Create an elegant product list using Bootstrap 4 list group</p>
+        <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white"> 
+                  <u>Bootstrapious</u></a>
+        </p>
+      </div>
+    </div>
+    <!-- End -->
+  
+    <div class="row">
+        {% for p in products %}
+      <div class="col-lg-8 mx-auto">
+  
+        <!-- List group-->
+        <ul class="list-group shadow">
+  
+          <!-- list group item-->
+          <li class="list-group-item">
+            <!-- Custom content-->
+            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+              <div class="media-body order-2 order-lg-1">
+                <h5 class="mt-0 font-weight-bold mb-2">{{p.category.title}}</h5>
+                <h3 class="mt-0 font-weight-bold mb-2">{{p.title|truncatechars:10}}</h3>
+                <p class="font-italic text-muted mb-0 small">{{p.description}}</p>
+               <div class="badge text-white bg-primary">-{{ p.get_percentage|floatformat:0}}%</div>
+                <div class="d-flex align-items-center justify-content-between mt-1">
+                    <h6 class="mb-3 small text-muted"><s>${{ p.old_price }}</s><strong class="ms-2 text-danger">${{ p.price }}</strong> </h6>
+                  <ul class="list-inline small">
+                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                    <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
+                  </ul>
+                </div>
+              </div><img src="{{p.image.url}}" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+              <span> <a class="btn btn-sm btn-outline-dark" href="">Add to cart</a></span>
+               
+            </div>
+            <!-- End -->
+          </li>
+          <!-- End -->
+  
+         
+  
+         
+  
+        
+  
+        </ul>
+        <!-- End -->
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock content %}
