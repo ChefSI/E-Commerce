@@ -62,7 +62,6 @@ def logout_view(request):
 @login_required
 def profile(request):
     user = request.user
-
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -89,12 +88,8 @@ def profile(request):
                     messages.error(request, 'New password and confirm password do not match.')
             else:
                 messages.error(request, 'Current password is incorrect.')
-
         return redirect('/user/profile/')
-
-    return render(request, 'userauths/profiles.html', {
-        'user': user,
-    })
+    return render(request, 'userauths/profiles.html', {'user': user,})
 
 def contact(request):
     return render(request, 'userauths/contact.html')
